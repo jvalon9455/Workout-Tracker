@@ -33,4 +33,19 @@ router.post("/api/workout", (req, res) => {
     });
 });
 
+router.put("/api/workout/:id", (req, res) => {
+    db.Workout.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((updateWorkout) => {
+        res.json(updateWorkout);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json({
+            error: true,
+            data: null,
+            message: "Unable to update workout",
+        });
+    });
+});
+
 module.exports = router;
