@@ -4,6 +4,21 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+// add express middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+mongoose.connect(
+    process.env.MONGODB_URI || "mongodb://localhost/Workout-Tracker",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    }
+  );
+
+// shows that backend server is listening
 app.get("/api/config", (req, res) => {
     res.json({
       success: true,
