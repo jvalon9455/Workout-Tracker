@@ -11,7 +11,7 @@ const workoutSchema = new Schema(
         exercises: [
             {
                 type: {
-                    type: String;
+                    type: String,
                     trim: true,
                     required: "Enter type of exercise"
                 },
