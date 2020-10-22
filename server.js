@@ -4,6 +4,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+const db = require("./models");
+
 // add express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
