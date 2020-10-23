@@ -1,3 +1,3 @@
 module.exports = {
-    Workout: require("./workoutNew")
+    Workout: require("./workout")
 }
