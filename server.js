@@ -20,7 +20,7 @@ app.use(logger("dev"));
 
 // add mongoose middleware
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/Workout-Tracker",
+    process.env.MONGODB_URI || "mongodb://localhost/workout",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

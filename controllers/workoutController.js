@@ -5,7 +5,7 @@ const db = require("../models");
 
 router.get("/api/workouts", (req, res) => {
     db.Workout.find({})
-        .populate("workouts")
+        // .populate("workouts")
         .then((foundWorkout) => {
             res.json(foundWorkout);
         })
@@ -33,20 +33,20 @@ router.get("/api/workouts/range", (req, res) => {
       });
   });
 
-  router.get("/api/workouts/:id", (req, res) => {
-    db.Workout.find({})
-      .then((foundWorkout) => {
-        res.json(foundWorkout);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.json({
-          error: true,
-          data: null,
-          message: "Unable to get workout"
-        });
-      });
-  });
+//   router.get("/api/workouts/:id", (req, res) => {
+//     db.Workout.find({})
+//       .then((foundWorkout) => {
+//         res.json(foundWorkout);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.json({
+//           error: true,
+//           data: null,
+//           message: "Unable to get workout"
+//         });
+//       });
+//   });
 
 router.post("/api/workouts", (req, res) => {
     db.Workout.create(req.body)
@@ -64,7 +64,7 @@ router.post("/api/workouts", (req, res) => {
 });
 
 router.put("/api/workouts/:id", (req, res) => {
-    db.Workout.findByIdAndUpdate(req.params.id, req.body, { $push: { exercise: req.body } })
+    db.Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } }, {new: true})
         .then((updateWorkout) => {
             res.json(updateWorkout);
         })
@@ -78,8 +78,9 @@ router.put("/api/workouts/:id", (req, res) => {
         });
 });
 
+// for full CRUD purposes
 router.delete("/api/workouts/:id", (req, res) => {
-    db.Workout.findByIdAndDelete(req.params.id)
+    db.Workout.findByIdAndDelete(req.params.id, req.body)
         .then((deletedWorkout) => {
             res.json(deletedWorkout);
         })
